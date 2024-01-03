@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.norm.mydaggerhilt.frags.Activity2
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -12,6 +13,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var wifiManager: WiFiManager
+    val mainViewModule: MainViewModule by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,5 +25,6 @@ class MainActivity : AppCompatActivity() {
         Log.d("MyLog", "MainActivity instance id: $wifiManager")
 
         startActivities(arrayOf(Intent(this, Activity2::class.java)))
+        mainViewModule.connect()
     }
 }
