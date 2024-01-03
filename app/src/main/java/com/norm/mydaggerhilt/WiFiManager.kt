@@ -1,8 +1,12 @@
 package com.norm.mydaggerhilt
 
 import android.util.Log
+import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class WiFIManager(private val settings: WiFiSettings) {
+@ActivityScoped
+class WiFiManager @Inject constructor(private val settings: WiFiSettings) {
     fun connection() {
         settings.openConnection()
     }
@@ -12,7 +16,7 @@ class WiFIManager(private val settings: WiFiSettings) {
     }
 }
 
-class WiFiSettings {
+class WiFiSettings @Inject constructor() {
     fun openConnection() {
         Log.d("MyLog", "Connected")
     }
